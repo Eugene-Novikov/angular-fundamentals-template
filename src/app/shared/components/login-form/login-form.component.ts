@@ -8,5 +8,19 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginFormComponent {
   @ViewChild("loginForm") public loginForm!: NgForm;
-  //Use the names `email` and `password` for form controls.
-}
+
+  submit() {
+    this.markAllControllsTouched();
+  }
+
+  private markAllControllsTouched() {
+    if (this.loginForm == null) return;
+    const controls = this.loginForm.controls;
+
+    for (const key in controls) {
+      if (controls.hasOwnProperty(key)) {
+        controls[key].markAsTouched();
+      }
+    }
+  }
+}       

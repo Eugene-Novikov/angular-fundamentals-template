@@ -24,9 +24,16 @@
   &__authors {
     margin-top: 8px;
     display: flex;
+    flex-direction: column;
 
     &-item {
-      margin-right: 10px;
+      display: flex; 
+      justify-content: space-between;
+      margin-bottom: 15px;
+
+      .remove {
+        cursor: pointer;
+      }
     }
   }
 

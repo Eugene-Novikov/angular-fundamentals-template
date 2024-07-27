@@ -19,11 +19,11 @@ export class CoursesListComponent {
     this.showCourse.emit(course);
   }
 
-  onEditCourse(course: Course) {
+  triggerEditCourse(course: Course) {
     this.editCourse.emit(course);
   }
 
-  onDeleteCourse(course: Course) {
+  triggerDeleteCourse(course: Course) {
     this.deleteCourse.emit(course);
   }
 }
