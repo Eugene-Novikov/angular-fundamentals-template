@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@app/shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
-import { CourseInfoComponent } from './course-info.component';
+import { CourseEditComponent } from './course-edit.component';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
-  { path: '', component: CourseInfoComponent }
+  { path: '', component: CourseEditComponent }
 ];
 
 @NgModule({
-  declarations: [CourseInfoComponent],
+  declarations: [
+    CourseEditComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes)
   ]
 })
-export class CourseInfoModule { }
+export class CourseEditModule { }

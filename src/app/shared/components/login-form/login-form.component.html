@@ -19,7 +19,8 @@
           <app-button [buttonText]="'login'" (click)="submit()"></app-button>
         </div>
         <div class="form__text">
-          If you don't have an account you may <strong>Registration</strong>
+          <span>If you don't have an account you may&nbsp;</span>
+          <ng-content></ng-content>
         </div>
       </div>
     </div>

@@ -1,11 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Course } from '@app/models/course';
+import { map, Observable } from 'rxjs';
+
+const HOST = 'http://localhost:4000'
+const ALL_COURSES_URL = `${HOST}/courses/all`;
 
 @Injectable({
     providedIn: 'root'
 })
 export class CoursesService {
-    getAll() {
-        // Add your code here
+
+    constructor(
+        private http: HttpClient
+    ) { }
+
+    getAll(): Observable<Course[]> {
+        return this.http.get<{ result: Course[] }>(ALL_COURSES_URL).pipe(map(response => response.result));
     }
 
     createCourse(course: any) { // replace 'any' with the required interface
