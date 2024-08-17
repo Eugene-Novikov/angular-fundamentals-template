@@ -8,7 +8,7 @@ import { Course } from '@app/models/course';
 })
 export class CoursesListComponent {
 
-  @Input() courses: Course[] = [];
+  @Input() courses: Course[] | null = [];
   @Input() editable: boolean = false;
 
   @Output() showCourse = new EventEmitter<Course>();

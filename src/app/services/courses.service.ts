@@ -19,35 +19,36 @@ export class CoursesService {
         return this.http.get<{ result: Course[] }>(ALL_COURSES_URL).pipe(map(response => response.result));
     }
 
-    createCourse(course: any) { // replace 'any' with the required interface
-        // Add your code here
+    filterCourses(value: string[]): Observable<Course[]> {
+        const filterUrl = HOST + "/courses/filter" + (value? ("?title=" + value) : "");
+        return this.http.get<Course[]>(filterUrl);
     }
 
-    editCourse(id: string, course: any) { // replace 'any' with the required interface
-        // Add your code here
+    createCourse(course: Course): Observable<Course> {
+        return this.http.post<Course>(`${HOST}/courses/add`, course);
     }
 
-    getCourse(id: string) {
-        // Add your code here
+    editCourse(id: string, course: Course): Observable<Course> {
+        return this.http.put<Course>(`${HOST}/courses/${id}`, course);
     }
 
-    deleteCourse(id: string) {
-        // Add your code here
+    getCourse(id: string): Observable<Course> {
+        return this.http.get<any>(`${HOST}/courses/${id}`);
     }
 
-    filterCourses(value: string) {
-        // Add your code here
+    deleteCourse(id: string): Observable<any>  {
+        return this.http.delete(`${HOST}/courses/${id}`);
     }
 
-    getAllAuthors() {
-        // Add your code here
+    getAllAuthors(): Observable<any>{
+        return this.http.get(`${HOST}/authors/all`);
     }
 
     createAuthor(name: string) {
-        // Add your code here
+        return this.http.post(`${HOST}/authors/add`, {name: `${name}`});
     }
 
-    getAuthorById(id: string) {
-        // Add your code here
+    getAuthorById(id: string): Observable<any> {
+        return this.http.get(`${HOST}/authors/${id}`);
     }
 }

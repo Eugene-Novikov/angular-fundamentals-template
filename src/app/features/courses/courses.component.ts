@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '@app/models/course';
-import { CoursesService } from '@app/services/courses.service';
+import { CoursesStateFacade } from '@app/store/courses/courses.facade';
 
 @Component({
   selector: 'app-courses',
@@ -9,19 +9,18 @@ import { CoursesService } from '@app/services/courses.service';
 })
 export class CoursesComponent implements OnInit {
 
-  courses: Course[] = [];
+  courses$ = this.coursesFacade.allCourses$;
 
-  constructor(
-    private coursesService: CoursesService
-  ) { }
+  constructor(private coursesFacade: CoursesStateFacade) {}
 
-  ngOnInit(): void {
-    this.coursesService.getAll().subscribe((result) => this.courses = result);
+  ngOnInit() {
+    this.coursesFacade.getAllCourses();
   }
 
   onSearch(searchStr: string) {
-    this.courses = searchStr.trim() === ''
-      ? this.courses
-      : this.courses.filter(course => course.title.toLowerCase().includes(searchStr.toLowerCase()));
+    // this.courses = searchStr.trim() === ''
+    //   ? this.courses
+    //   : this.courses.filter(course => course.title.toLowerCase().includes(searchStr.toLowerCase()));
+    // this.coursesFacade.getFilteredCourses(searchValue);
   }
 }
